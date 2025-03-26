@@ -3,6 +3,8 @@ package common
 import (
 	"fmt"
 	"strings"
+
+	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
 
 //****************** CommonEventCase ******************
@@ -11,135 +13,145 @@ func (e *CommonEventType) Get() *CommonEventType {
 	return e
 }
 
+// GetBase поле Base
 func (e *CommonEventType) GetBase() bool {
 	return e.Base
 }
 
-// SetValueBase устанавливает BOOL значение для поля Base
+// SetValueBase поле Base
 func (e *CommonEventType) SetValueBase(v bool) {
 	e.Base = v
 }
 
-// SetAnyBase устанавливает ЛЮБОЕ значение для поля Base
+// SetAnyBase поле Base
 func (e *CommonEventType) SetAnyBase(i interface{}) {
 	if v, ok := i.(bool); ok {
 		e.Base = v
 	}
 }
 
+// GetStartDate значение в формате RFC3339 для поля StartDate
 func (e *CommonEventType) GetStartDate() string {
 	return e.StartDate
 }
 
-// SetValueStartDate устанавливает значение в формате RFC3339 для поля StartDate
+// SetValueStartDate значение в формате RFC3339 для поля StartDate
 func (e *CommonEventType) SetValueStartDate(v string) {
 	e.StartDate = v
 }
 
-// SetAnyStartDate устанавливает ЛЮБОЕ значение для поля StartDate
+// SetAnyStartDate значение для поля StartDate
 func (e *CommonEventType) SetAnyStartDate(i interface{}) {
 	tmp := supportingfunctions.ConversionAnyToInt(i)
 	e.StartDate = supportingfunctions.GetDateTimeFormatRFC3339(int64(tmp))
 }
 
+// GetRootId основной идентификатор
 func (e *CommonEventType) GetRootId() string {
 	return e.RootId
 }
 
-// SetValueRootId устанавливает STRING значение для поля RootId
+// SetValueRootId основной идентификатор
 func (e *CommonEventType) SetValueRootId(v string) {
 	e.RootId = v
 }
 
-// SetAnyRootId устанавливает ЛЮБОЕ значение для поля RootId
+// SetAnyRootId основной идентификатор
 func (e *CommonEventType) SetAnyRootId(i interface{}) {
 	e.RootId = fmt.Sprint(i)
 }
 
+// GetOrganisation наименование организации
 func (e *CommonEventType) GetOrganisation() string {
 	return e.Organisation
 }
 
-// SetValueOrganisation устанавливает STRING значение для поля Organisation
+// SetValueOrganisation наименование организации
 func (e *CommonEventType) SetValueOrganisation(v string) {
 	e.Organisation = v
 }
 
-// SetAnyOrganisation устанавливает ЛЮБОЕ значение для поля Organisation
+// SetAnyOrganisation наименование организации
 func (e *CommonEventType) SetAnyOrganisation(i interface{}) {
 	e.Organisation = fmt.Sprint(i)
 }
 
+// GetOrganisationId идентификатор организации
 func (e *CommonEventType) GetOrganisationId() string {
 	return e.OrganisationId
 }
 
-// SetValueOrganisationId устанавливает STRING значение для поля OrganisationId
+// SetValueOrganisationId идентификатор организации
 func (e *CommonEventType) SetValueOrganisationId(v string) {
 	e.OrganisationId = v
 }
 
-// SetAnyOrganisationId устанавливает ЛЮБОЕ значение для поля OrganisationId
+// SetAnyOrganisationId идентификатор организации
 func (e *CommonEventType) SetAnyOrganisationId(i interface{}) {
 	e.OrganisationId = fmt.Sprint(i)
 }
 
+// GetObjectId идентификатор объекта
 func (e *CommonEventType) GetObjectId() string {
 	return e.ObjectId
 }
 
-// SetValueObjectId устанавливает STRING значение для поля ObjectId
+// SetValueObjectId идентификатор объекта
 func (e *CommonEventType) SetValueObjectId(v string) {
 	e.ObjectId = v
 }
 
-// SetAnyObjectId устанавливает ЛЮБОЕ значение для поля ObjectId
+// SetAnyObjectId идентификатор объекта
 func (e *CommonEventType) SetAnyObjectId(i interface{}) {
 	e.ObjectId = fmt.Sprint(i)
 }
 
+// GetObjectType тип объекта
 func (e *CommonEventType) GetObjectType() string {
 	return e.ObjectType
 }
 
-// SetValueObjectType устанавливает STRING значение для поля ObjectType
+// SetValueObjectType тип объекта
 func (e *CommonEventType) SetValueObjectType(v string) {
 	e.ObjectType = v
 }
 
-// SetAnyObjectType устанавливает ЛЮБОЕ значение для поля ObjectType
+// SetAnyObjectType тип объекта
 func (e *CommonEventType) SetAnyObjectType(i interface{}) {
 	e.ObjectType = fmt.Sprint(i)
 }
 
+// GetOperation операция
 func (e *CommonEventType) GetOperation() string {
 	return e.Operation
 }
 
-// SetValueOperation устанавливает STRING значение для поля Operation
+// SetValueOperation операция
 func (e *CommonEventType) SetValueOperation(v string) {
 	e.Operation = v
 }
 
-// SetAnyOperation устанавливает ЛЮБОЕ значение для поля Operation
+// SetAnyOperation операция
 func (e *CommonEventType) SetAnyOperation(i interface{}) {
 	e.Operation = fmt.Sprint(i)
 }
 
+// GetRequestId идентификатор запроса
 func (e *CommonEventType) GetRequestId() string {
 	return e.RequestId
 }
 
-// SetValueRequestId устанавливает STRING значение для поля RequestId
+// SetValueRequestId идентификатор запроса
 func (e *CommonEventType) SetValueRequestId(v string) {
 	e.RequestId = v
 }
 
-// SetAnyRequestId устанавливает ЛЮБОЕ значение для поля RequestId
+// SetAnyRequestId идентификатор запроса
 func (e *CommonEventType) SetAnyRequestId(i interface{}) {
 	e.RequestId = fmt.Sprint(i)
 }
 
+// ToStringBeautiful форматированный вывод
 func (em CommonEventType) ToStringBeautiful(num int) string {
 	str := strings.Builder{}
 
