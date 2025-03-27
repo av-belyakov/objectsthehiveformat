@@ -81,6 +81,28 @@ type CommonObservableType struct {
 	IgnoreSimilarity     bool   `json:"ignoreSimilarity,omitempty" bson:"ignoreSimilarity"` //игнорировать сходство
 }
 
+// CommonEventAlertObject объект события для Alert
+type CommonEventAlertObject struct {
+	UnderliningId   string `json:"_id,omitempty" bson:"_id"`                             //уникальный идентификатор
+	Id              string `json:"id,omitempty" bson:"id"`                               //уникальный идентификатор
+	CreatedBy       string `json:"createdBy,omitempty" bson:"createdBy"`                 //кем создан
+	UpdatedBy       string `json:"updatedBy,omitempty" bson:"updatedBy,omitempty"`       //кем обновлен
+	CreatedAt       string `json:"createdAt,omitempty" bson:"createdAt"`                 //дата создания (формат RFC3339)
+	UpdatedAt       string `json:"updatedAt,omitempty" bson:"updatedAt,omitempty"`       //дата обновления (формат RFC3339)
+	UnderliningType string `json:"_type,omitempty" bson:"_type"`                         //тип
+	Title           string `json:"title,omitempty" bson:"title"`                         //заголовок
+	Description     string `json:"description,omitempty" bson:"description"`             //описание
+	Status          string `json:"status,omitempty" bson:"status"`                       //список тегов
+	Date            string `json:"date,omitempty" bson:"date"`                           //дата (формат RFC3339)
+	Type            string `json:"type,omitempty" bson:"type"`                           //тип
+	ObjectType      string `json:"objectType,omitempty" bson:"objectType"`               //тип объекта
+	Source          string `json:"source,omitempty" bson:"source"`                       //источник
+	SourceRef       string `json:"sourceRef,omitempty" bson:"sourceRef"`                 //ссылка на источник
+	Case            string `json:"case,omitempty" bson:"case,omitempty"`                 //кейс
+	CaseTemplate    string `json:"caseTemplate,omitempty" bson:"caseTemplate,omitempty"` //шаблон обращения
+	Tlp             uint64 `json:"tlp,omitempty" bson:"tlp"`                             //tlp
+}
+
 // AttachmentData прикрепленные данные
 type AttachmentData struct {
 	Hashes      []string `json:"hashes,omitempty" bson:"hashes"`           //список хешей

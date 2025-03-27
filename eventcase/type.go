@@ -7,7 +7,7 @@ import (
 )
 
 // TypeEvent информация о событии
-type TypeEvent struct {
+type TypeEventForCase struct {
 	common.CommonEventType
 	Details casedetails.EventCaseDetails `json:"details,omitzero" bson:"details"` //детальная информация о событии
 	Object  caseobject.EventCaseObject   `json:"object,omitzero" bson:"object"`   //объект события

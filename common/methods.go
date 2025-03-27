@@ -70,7 +70,7 @@ func (a *AttachmentData) SetValueId(v string) {
 }
 
 // SetAnyId идентификатор
-func (a *AttachmentData) SetAnyId(i interface{}) {
+func (a *AttachmentData) SetAnyId(i any) {
 	a.Id = fmt.Sprint(i)
 }
 
@@ -85,7 +85,7 @@ func (a *AttachmentData) SetValueName(v string) {
 }
 
 // SetAnyName имя
-func (a *AttachmentData) SetAnyName(i interface{}) {
+func (a *AttachmentData) SetAnyName(i any) {
 	a.Name = fmt.Sprint(i)
 }
 
@@ -100,7 +100,7 @@ func (a *AttachmentData) SetValueContentType(v string) {
 }
 
 // SetAnyContentType тип контента
-func (a *AttachmentData) SetAnyContentType(i interface{}) {
+func (a *AttachmentData) SetAnyContentType(i any) {
 	a.ContentType = fmt.Sprint(i)
 }
 
@@ -115,7 +115,7 @@ func (a *AttachmentData) SetValueHashes(v string) {
 }
 
 // SetAnyHashes хеши
-func (a *AttachmentData) SetAnyHashes(i interface{}) {
+func (a *AttachmentData) SetAnyHashes(i any) {
 	a.Hashes = append(a.Hashes, fmt.Sprint(i))
 }
 

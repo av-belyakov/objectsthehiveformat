@@ -9,6 +9,7 @@ import (
 
 //**************** CommonEventCaseObject ***************
 
+// NewCommonEventCaseObject создает новый объект типа CommonEventCaseObject
 func NewCommonEventCaseObject() *CommonEventCaseObject {
 	return &CommonEventCaseObject{
 		StartDate: "1970-01-01T00:00:00+00:00",

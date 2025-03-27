@@ -2,7 +2,7 @@ package common
 
 import "reflect"
 
-// ReplacingOldValues заменяет старые значения структуры EventMessageForEsAlertObject
+// ReplacingOldValues заменяет старые значения структуры CommonEventCaseObject
 // новыми значениями. Изменяемые поля:
 // Flag - флаг
 // CaseId - уникальный идентификатор дела
@@ -34,8 +34,8 @@ func (e *CommonEventCaseObject) ReplacingOldValues(element CommonEventCaseObject
 	newStruct := reflect.ValueOf(element)
 	typeOfNewStruct := newStruct.Type()
 
-	for i := 0; i < currentStruct.NumField(); i++ {
-		for j := 0; j < newStruct.NumField(); j++ {
+	for i := range currentStruct.NumField() {
+		for j := range newStruct.NumField() {
 			if typeOfCurrentStruct.Field(i).Name != typeOfNewStruct.Field(j).Name {
 				continue
 			}

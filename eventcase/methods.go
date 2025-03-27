@@ -10,37 +10,39 @@ import (
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
 
-func NewTypeEvent() *TypeEvent {
-	return &TypeEvent{
+// NewTypeEventForCase создаёт новый объект типа TypeEventForCase
+func NewTypeEventForCase() *TypeEventForCase {
+	return &TypeEventForCase{
 		CommonEventType: *common.NewCommonEventType(),
 		Details:         *casedetails.NewEventCaseDetails(),
 		Object:          *caseobject.NewEventCaseObject(),
 	}
 }
 
-func (e *TypeEvent) Get() *TypeEvent {
+func (e *TypeEventForCase) Get() *TypeEventForCase {
 	return e
 }
 
-func (e *TypeEvent) GetDetails() casedetails.EventCaseDetails {
+func (e *TypeEventForCase) GetDetails() casedetails.EventCaseDetails {
 	return e.Details
 }
 
 // SetValueDetails устанавливает значение типа EventDetails для поля Details
-func (e *TypeEvent) SetValueDetails(v casedetails.EventCaseDetails) {
+func (e *TypeEventForCase) SetValueDetails(v casedetails.EventCaseDetails) {
 	e.Details = v
 }
 
-func (e *TypeEvent) GetObject() caseobject.EventCaseObject {
+func (e *TypeEventForCase) GetObject() caseobject.EventCaseObject {
 	return e.Object
 }
 
 // SetValueObject устанавливает значение типа EventForEsCaseObject для поля Object
-func (e *TypeEvent) SetValueObject(v caseobject.EventCaseObject) {
+func (e *TypeEventForCase) SetValueObject(v caseobject.EventCaseObject) {
 	e.Object = v
 }
 
-func (em TypeEvent) ToStringBeautiful(num int) string {
+// ToStringBeautiful форматированный вывод
+func (em TypeEventForCase) ToStringBeautiful(num int) string {
 	str := strings.Builder{}
 
 	ws := supportingfunctions.GetWhitespace(num)
