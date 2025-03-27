@@ -19,13 +19,13 @@ type CommonEventType struct {
 type CustomFields map[string]interfaces.CustomerFields
 
 type CustomFieldStringType struct {
-	Order  int    `json:"order" bson:"order"`
 	String string `json:"string" bson:"string"`
+	Order  int    `json:"order" bson:"order"`
 }
 
 type CustomFieldDateType struct {
-	Order int    `json:"order" bson:"order"`
 	Date  string `json:"date" bson:"date"`
+	Order int    `json:"order" bson:"order"`
 }
 
 type CustomFieldIntegerType struct {

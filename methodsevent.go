@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/av-belyakov/objectsthehiveformat/casedetails"
+	"github.com/av-belyakov/objectsthehiveformat/caseobject"
 	"github.com/av-belyakov/objectsthehiveformat/common"
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
@@ -11,8 +13,8 @@ import (
 func NewTypeEvent() *TypeEvent {
 	return &TypeEvent{
 		CommonEventType: *common.NewCommonEventType(),
-		Details:         *NewEventCaseDetails(),
-		Object:          *NewEventCaseObject(),
+		Details:         *casedetails.NewEventCaseDetails(),
+		Object:          *caseobject.NewEventCaseObject(),
 	}
 }
 
@@ -20,21 +22,21 @@ func (e *TypeEvent) Get() *TypeEvent {
 	return e
 }
 
-func (e *TypeEvent) GetDetails() EventCaseDetails {
+func (e *TypeEvent) GetDetails() casedetails.EventCaseDetails {
 	return e.Details
 }
 
 // SetValueDetails устанавливает значение типа EventDetails для поля Details
-func (e *TypeEvent) SetValueDetails(v EventCaseDetails) {
+func (e *TypeEvent) SetValueDetails(v casedetails.EventCaseDetails) {
 	e.Details = v
 }
 
-func (e *TypeEvent) GetObject() EventCaseObject {
+func (e *TypeEvent) GetObject() caseobject.EventCaseObject {
 	return e.Object
 }
 
 // SetValueObject устанавливает значение типа EventForEsCaseObject для поля Object
-func (e *TypeEvent) SetValueObject(v EventCaseObject) {
+func (e *TypeEvent) SetValueObject(v caseobject.EventCaseObject) {
 	e.Object = v
 }
 
