@@ -9,6 +9,68 @@ import (
 
 // ************* CustomFields **************
 
+// Get возвращает значения CustomFieldStringType, где 1 и 3 значение это
+// наименование поля
+func (cf *CustomFieldStringType) Get() (string, int, string, string) {
+	return "order", cf.Order, "string", cf.String
+}
+
+// Set устанавливает значения CustomFieldStringType
+func (cf *CustomFieldStringType) Set(order, str interface{}) {
+	cf.Order = supportingfunctions.ConversionAnyToInt(order)
+	cf.String = fmt.Sprint(str)
+}
+
+// Get возвращает значения CustomFieldDateType, где 1 и 3 значение это
+// наименование поля
+func (cf *CustomFieldDateType) Get() (string, int, string, string) {
+	return "order", cf.Order, "date", cf.Date
+}
+
+// Set устанавливает значения CustomFieldDateType
+func (cf *CustomFieldDateType) Set(order, date interface{}) {
+	cf.Order = supportingfunctions.ConversionAnyToInt(order)
+
+	if str, ok := date.(string); ok {
+		cf.Date = str
+
+		return
+	}
+
+	tmp := supportingfunctions.ConversionAnyToInt(date)
+	cf.Date = supportingfunctions.GetDateTimeFormatRFC3339(int64(tmp))
+}
+
+// Get возвращает значения CustomFieldIntegerType, где 1 и 3 значение это
+// наименование поля
+func (cf *CustomFieldIntegerType) Get() (string, int, string, string) {
+	return "order", cf.Order, "integer", fmt.Sprint(cf.Integer)
+}
+
+// Set устанавливает значения CustomFieldIntegerType
+func (cf *CustomFieldIntegerType) Set(order, integer interface{}) {
+	cf.Order = supportingfunctions.ConversionAnyToInt(order)
+
+	if i, ok := integer.(int); ok {
+		cf.Integer = i
+	}
+}
+
+// Get возвращает значения CustomFieldBoolenType, где 1 и 3 значение это
+// наименование поля
+func (cf *CustomFieldBoolenType) Get() (string, int, string, string) {
+	return "order", cf.Order, "boolen", fmt.Sprint(cf.Boolean)
+}
+
+// Set устанавливает значения CustomFieldBoolenType
+func (cf *CustomFieldBoolenType) Set(order, boolen interface{}) {
+	cf.Order = supportingfunctions.ConversionAnyToInt(order)
+
+	if i, ok := boolen.(bool); ok {
+		cf.Boolean = i
+	}
+}
+
 func CustomFieldsToStringBeautiful(l CustomFields, num int) string {
 	strB := strings.Builder{}
 	ws := supportingfunctions.GetWhitespace(num + 2)
