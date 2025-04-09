@@ -194,3 +194,16 @@ func (a AttachmentData) ToStringBeautiful(num int) string {
 
 	return str.String()
 }
+
+// ********************* ReportTaxonomys *******************
+func (t *ReportTaxonomies) GetTaxonomys() []Taxonomy {
+	return t.Taxonomies
+}
+
+func (t *ReportTaxonomies) GetReportTaxonomys() ReportTaxonomies {
+	return *t
+}
+
+func (t *ReportTaxonomies) AddTaxonomy(taxonomy Taxonomy) {
+	t.Taxonomies = append(t.Taxonomies, taxonomy)
+}
