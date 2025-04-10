@@ -124,3 +124,18 @@ type Taxonomy struct {
 	Predicate string `json:"predicate,omitempty" bson:"predicate"`
 	Value     string `json:"value,omitempty" bson:"value"`
 }
+
+// CommonArtifactType содержит общие поля для описания объекта Artifact
+type CommonArtifactType struct {
+	UnderliningId   string `json:"_id,omitempty" bson:"_id"`             //уникальный идентификатор
+	Id              string `json:"id,omitempty" bson:"id"`               //уникальный идентификатор
+	UnderliningType string `json:"_type,omitempty" bson:"_type"`         //тип
+	CreatedAt       string `json:"createdAt,omitempty" bson:"createdAt"` //время создания в формате RFC3339
+	StartDate       string `json:"startDate,omitempty" bson:"startDate"` //время начала события в формате RFC3339
+	CreatedBy       string `json:"createdBy,omitempty" bson:"createdBy"` //кем создан
+	Data            string `json:"data,omitempty" bson:"data"`           //данные
+	DataType        string `json:"dataType,omitempty" bson:"dataType"`   //тип данных
+	Message         string `json:"message,omitempty" bson:"message"`     //сообщение
+	Tlp             uint64 `json:"tlp,omitempty" bson:"tlp"`             //tlp
+	Ioc             bool   `json:"ioc,omitempty" bson:"ioc"`             //индикатор компрометации
+}
