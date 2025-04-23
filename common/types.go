@@ -112,6 +112,19 @@ type AttachmentData struct {
 	Size        uint64   `json:"size,omitempty" bson:"size"`               //размер
 }
 
+// ReportTaxonomies
+type ReportTaxonomies struct {
+	Taxonomies []Taxonomy `json:"taxonomies,omitempty" bson:"taxonomies"`
+}
+
+// Taxonomy
+type Taxonomy struct {
+	Level     string `json:"level,omitempty" bson:"level"`
+	Namespace string `json:"namespace,omitempty" bson:"namespace"`
+	Predicate string `json:"predicate,omitempty" bson:"predicate"`
+	Value     string `json:"value,omitempty" bson:"value"`
+}
+
 // CommonArtifactType содержит общие поля для описания объекта Artifact
 type CommonArtifactType struct {
 	Id              string `json:"id,omitempty" bson:"id"`               //уникальный идентификатор
