@@ -59,7 +59,7 @@ func (e *EventAlertDetails) SetValueDescription(v string) {
 	e.Description = v
 }
 
-// SetAny значение поля Description
+// SetAnyDescription значение поля Description
 func (e *EventAlertDetails) SetAnyDescription(i any) {
 	str := fmt.Sprint(i)
 	str = strings.ReplaceAll(str, "\t", "")

@@ -83,23 +83,23 @@ type CommonObservableType struct {
 
 // CommonEventAlertObject объект события для Alert
 type CommonEventAlertObject struct {
-	UnderliningId   string `json:"_id,omitempty" bson:"_id"`                             //уникальный идентификатор
 	Id              string `json:"id,omitempty" bson:"id"`                               //уникальный идентификатор
+	Date            string `json:"date,omitempty" bson:"date"`                           //дата (формат RFC3339)
+	Case            string `json:"case,omitempty" bson:"case,omitempty"`                 //кейс
+	Type            string `json:"type,omitempty" bson:"type"`                           //тип
+	Title           string `json:"title,omitempty" bson:"title"`                         //заголовок
+	Status          string `json:"status,omitempty" bson:"status"`                       //список тегов
+	Source          string `json:"source,omitempty" bson:"source"`                       //источник
 	CreatedBy       string `json:"createdBy,omitempty" bson:"createdBy"`                 //кем создан
 	UpdatedBy       string `json:"updatedBy,omitempty" bson:"updatedBy,omitempty"`       //кем обновлен
 	CreatedAt       string `json:"createdAt,omitempty" bson:"createdAt"`                 //дата создания (формат RFC3339)
 	UpdatedAt       string `json:"updatedAt,omitempty" bson:"updatedAt,omitempty"`       //дата обновления (формат RFC3339)
-	UnderliningType string `json:"_type,omitempty" bson:"_type"`                         //тип
-	Title           string `json:"title,omitempty" bson:"title"`                         //заголовок
-	Description     string `json:"description,omitempty" bson:"description"`             //описание
-	Status          string `json:"status,omitempty" bson:"status"`                       //список тегов
-	Date            string `json:"date,omitempty" bson:"date"`                           //дата (формат RFC3339)
-	Type            string `json:"type,omitempty" bson:"type"`                           //тип
-	ObjectType      string `json:"objectType,omitempty" bson:"objectType"`               //тип объекта
-	Source          string `json:"source,omitempty" bson:"source"`                       //источник
 	SourceRef       string `json:"sourceRef,omitempty" bson:"sourceRef"`                 //ссылка на источник
-	Case            string `json:"case,omitempty" bson:"case,omitempty"`                 //кейс
+	ObjectType      string `json:"objectType,omitempty" bson:"objectType"`               //тип объекта
+	Description     string `json:"description,omitempty" bson:"description"`             //описание
 	CaseTemplate    string `json:"caseTemplate,omitempty" bson:"caseTemplate,omitempty"` //шаблон обращения
+	UnderliningId   string `json:"_id,omitempty" bson:"_id"`                             //уникальный идентификатор
+	UnderliningType string `json:"_type,omitempty" bson:"_type"`                         //тип
 	Tlp             uint64 `json:"tlp,omitempty" bson:"tlp"`                             //tlp
 }
 
@@ -110,4 +110,19 @@ type AttachmentData struct {
 	Name        string   `json:"name,omitempty" bson:"name"`               //наименование
 	ContentType string   `json:"contentType,omitempty" bson:"contentType"` //тип контента
 	Size        uint64   `json:"size,omitempty" bson:"size"`               //размер
+}
+
+// CommonArtifactType содержит общие поля для описания объекта Artifact
+type CommonArtifactType struct {
+	Id              string `json:"id,omitempty" bson:"id"`               //уникальный идентификатор
+	Data            string `json:"data,omitempty" bson:"data"`           //данные
+	Message         string `json:"message,omitempty" bson:"message"`     //сообщение
+	DataType        string `json:"dataType,omitempty" bson:"dataType"`   //тип данных
+	CreatedAt       string `json:"createdAt,omitempty" bson:"createdAt"` //время создания в формате RFC3339
+	CreatedBy       string `json:"createdBy,omitempty" bson:"createdBy"` //кем создан
+	StartDate       string `json:"startDate,omitempty" bson:"startDate"` //дата начала в формате RFC3339
+	UnderliningId   string `json:"_id,omitempty" bson:"_id"`             //уникальный идентификатор
+	UnderliningType string `json:"_type,omitempty" bson:"_type"`         //тип
+	Tlp             uint64 `json:"tlp,omitempty" bson:"tlp"`             //tlp
+	Ioc             bool   `json:"ioc,omitempty" bson:"ioc"`             //индикатор компрометации
 }
