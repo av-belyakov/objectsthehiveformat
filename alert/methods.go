@@ -9,6 +9,7 @@ import (
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
 
+// NewTypeAlert создаёт новый объект типа TypeAlert
 func NewTypeAlert() *TypeAlert {
 	return &TypeAlert{
 		CommonEventAlertObject: common.CommonEventAlertObject{
