@@ -116,29 +116,6 @@ func (o *Observable) ReplacingOldValues(element Observable) int {
 				continue
 			}
 
-			// для обработки поля "Reports"
-			//*****************************
-			if typeOfCurrentStruct.Field(i).Name == "Reports" {
-				/*newRT, okNew := newStruct.Field(j).Interface().(map[string]ReportTaxonomies)
-				if !okNew {
-					continue
-				}
-
-				for key, value := range newRT {
-					rt, ok := o.GetTaxonomies(key)
-					if !ok {
-						o.AddValueReports(key, value)
-
-						continue
-					}
-
-					num, _ := rt.ReplacingOldValues(value)
-					countReplacingFields += num
-				}*/
-
-				continue
-			}
-
 			//обработка полей содержащихся в ObservableMessageEs
 			//и не относящихся к вышеперечисленым значениям
 			//***************************************************

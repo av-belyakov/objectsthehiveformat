@@ -1,20 +1,10 @@
 package common
 
-import "reflect"
+import (
+	"reflect"
+)
 
-// ReplacingOldValues заменяет старые значения структуры CommonEventType
-// новыми значениями. Изменяемые поля:
-// Ioc - индикатор компрометации
-// Tlp - tlp
-// UnderliningId - уникальный идентификатор
-// Id - уникальный идентификатор
-// UnderliningType - тип
-// CreatedAt - время создания
-// CreatedBy - кем создан
-// StartDate - дата начала
-// Data - данные
-// DataType - тип данных
-// Message - сообщение
+// ReplacingOldValues заменяет старые значения структуры CommonArtifactType
 func (a *CommonArtifactType) ReplacingOldValues(element CommonArtifactType) int {
 	var countReplacingFields int
 
