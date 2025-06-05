@@ -1,13 +1,189 @@
 package common
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 // ************* CustomFields **************
+
+// Get поле CustomFields
+func (fields *CustomFields) Get() CustomFields {
+	return *fields
+}
+
+// Set поле CustomFields
+func (fields *CustomFields) Set(v CustomFields) {
+	if *fields == nil {
+		*fields = make(CustomFields)
+	}
+
+	for key, value := range v {
+		(*fields)[key] = value
+	}
+}
+
+func (fields *CustomFields) UnmarshalJSON(data []byte) error {
+	type tmpCustomFieldType map[string]*json.RawMessage
+
+	list := map[string]string{
+		"attack-type":         "string",
+		"class-attack":        "string",
+		"event-source":        "string",
+		"external-letter":     "string",
+		"geoip":               "string",
+		"ncircc-class-attack": "string",
+		"ncircc-bulletin-id":  "string",
+		"inbox1":              "string",
+		"inner-letter":        "string",
+		"ir-name":             "string",
+		"id-soa":              "string",
+		"notification":        "string",
+		"sphere":              "string",
+		"state":               "string",
+		"report":              "string",
+		"first-time":          "date",
+		"last-time":           "date",
+		"b2mid":               "integer",
+		"is-incident":         "boolen",
+		"work-admin":          "boolen",
+	}
+
+	tmp := tmpCustomFieldType{}
+	if err := json.Unmarshal(data, &tmp); err != nil {
+		return err
+	}
+
+	//newResult := make(map[string]CustomerFields, len(tmp.CustomFields))
+	newResult := make(CustomFields, len(tmp))
+	for k, v := range tmp {
+		name, ok := list[k]
+		if !ok {
+			continue
+		}
+
+		switch name {
+		case "string":
+			custField := &CustomFieldStringType{}
+			if err := json.Unmarshal(*v, custField); err != nil {
+				return err
+			}
+
+			newResult[k] = custField
+
+		case "date":
+			custField := &CustomFieldDateType{}
+			if err := json.Unmarshal(*v, custField); err != nil {
+				return err
+			}
+
+			newResult[k] = custField
+
+		case "integer":
+			custField := &CustomFieldIntegerType{}
+			if err := json.Unmarshal(*v, custField); err != nil {
+				return err
+			}
+
+			newResult[k] = custField
+
+		case "boolen":
+			custField := &CustomFieldBoolenType{}
+			if err := json.Unmarshal(*v, custField); err != nil {
+				return err
+			}
+
+			newResult[k] = custField
+		}
+	}
+
+	fields.Set(newResult)
+
+	return nil
+}
+
+func (fields *CustomFields) UnmarshalBSON(data []byte) error {
+	type tmpCustomFieldType map[string]*bson.Raw
+
+	list := map[string]string{
+		"attack-type":         "string",
+		"class-attack":        "string",
+		"event-source":        "string",
+		"external-letter":     "string",
+		"geoip":               "string",
+		"ncircc-class-attack": "string",
+		"ncircc-bulletin-id":  "string",
+		"inbox1":              "string",
+		"inner-letter":        "string",
+		"ir-name":             "string",
+		"id-soa":              "string",
+		"notification":        "string",
+		"sphere":              "string",
+		"state":               "string",
+		"report":              "string",
+		"first-time":          "date",
+		"last-time":           "date",
+		"b2mid":               "integer",
+		"is-incident":         "boolen",
+		"work-admin":          "boolen",
+	}
+
+	tmp := tmpCustomFieldType{}
+	if err := bson.Unmarshal(data, &tmp); err != nil {
+		return err
+	}
+
+	//newResult := make(map[string]CustomerFields, len(tmp.CustomFields))
+	newResult := make(CustomFields, len(tmp))
+	for k, v := range tmp {
+		name, ok := list[k]
+		if !ok {
+			continue
+		}
+
+		switch name {
+		case "string":
+			custField := &CustomFieldStringType{}
+			if err := bson.Unmarshal(*v, custField); err != nil {
+				return err
+			}
+
+			newResult[k] = custField
+
+		case "date":
+			custField := &CustomFieldDateType{}
+			if err := bson.Unmarshal(*v, custField); err != nil {
+				return err
+			}
+
+			newResult[k] = custField
+
+		case "integer":
+			custField := &CustomFieldIntegerType{}
+			if err := bson.Unmarshal(*v, custField); err != nil {
+				return err
+			}
+
+			newResult[k] = custField
+
+		case "boolen":
+			custField := &CustomFieldBoolenType{}
+			if err := bson.Unmarshal(*v, custField); err != nil {
+				return err
+			}
+
+			newResult[k] = custField
+		}
+	}
+
+	fields.Set(newResult)
+
+	return nil
+}
 
 // Get возвращает значения CustomFieldStringType, где 1 и 3 значение это
 // наименование поля
