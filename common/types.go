@@ -1,7 +1,5 @@
 package common
 
-import "github.com/av-belyakov/objectsthehiveformat/interfaces"
-
 // CommonEventType общие поля для описания события
 type CommonEventType struct {
 	StartDate      string `json:"startDate,omitempty" bson:"startDate"`           //начальная дата в формате RFC3339
@@ -16,7 +14,7 @@ type CommonEventType struct {
 }
 
 // CustomFields настраиваемые поля
-type CustomFields map[string]interfaces.CustomerFields
+type CustomFields map[string]CustomerFields
 
 type CustomFieldStringType struct {
 	String string `json:"string" bson:"string"`
