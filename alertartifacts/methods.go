@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 
+	"slices"
+
 	"github.com/av-belyakov/objectsthehiveformat/common"
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
@@ -79,14 +81,16 @@ func (a *Artifacts) GetTags() map[string][]string {
 
 // SetValueTags добаляет значение в Tags по ключу
 func (a *Artifacts) SetValueTags(k, v string) bool {
+	if a.Tags == nil {
+		a.Tags = make(map[string][]string)
+	}
+
 	if _, ok := a.Tags[k]; !ok {
 		a.Tags[k] = []string(nil)
 	}
 
-	for _, value := range a.Tags[k] {
-		if v == value {
-			return false
-		}
+	if slices.Contains(a.Tags[k], v) {
+		return false
 	}
 
 	a.Tags[k] = append(a.Tags[k], v)
@@ -105,12 +109,16 @@ func (a *Artifacts) GetTagsAll() []string {
 
 // SetValueTagsAll добавляет значение в список поля TagsAll
 func (a *Artifacts) SetValueTagsAll(v string) {
+	if a.TagsAll == nil {
+		a.TagsAll = []string(nil)
+	}
+
 	a.TagsAll = append(a.TagsAll, v)
 }
 
 // SetAnyTagsAll добавляет значение в список поля TagsAll
 func (a *Artifacts) SetAnyTagsAll(i any) {
-	a.TagsAll = append(a.TagsAll, fmt.Sprint(i))
+	a.SetValueTagsAll(fmt.Sprint(i))
 }
 
 func (a *Artifacts) ToStringBeautiful(num int) string {

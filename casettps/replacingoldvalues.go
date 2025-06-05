@@ -38,8 +38,8 @@ func (a *Ttp) ReplacingOldValues(element Ttp) int {
 	newStruct := reflect.ValueOf(element)
 	typeOfNewStruct := newStruct.Type()
 
-	for i := 0; i < currentStruct.NumField(); i++ {
-		for j := 0; j < newStruct.NumField(); j++ {
+	for i := range currentStruct.NumField() {
+		for j := range newStruct.NumField() {
 			if typeOfCurrentStruct.Field(i).Name != typeOfNewStruct.Field(j).Name {
 				continue
 			}
@@ -94,8 +94,8 @@ func (ed *ExtraDataTtp) ReplacingOldValues(element ExtraDataTtp) int {
 	newStruct := reflect.ValueOf(element)
 	typeOfNewStruct := newStruct.Type()
 
-	for i := 0; i < currentStruct.NumField(); i++ {
-		for j := 0; j < newStruct.NumField(); j++ {
+	for i := range currentStruct.NumField() {
+		for j := range newStruct.NumField() {
 			if typeOfCurrentStruct.Field(i).Name != typeOfNewStruct.Field(j).Name {
 				continue
 			}
@@ -103,12 +103,14 @@ func (ed *ExtraDataTtp) ReplacingOldValues(element ExtraDataTtp) int {
 			// для обработки поля "Pattern"
 			if typeOfCurrentStruct.Field(i).Name == "Pattern" {
 				countReplacingFields += ed.Pattern.ReplacingOldValues(element.GetPattern())
+
 				continue
 			}
 
 			// для обработки поля "PatternParent"
 			if typeOfCurrentStruct.Field(i).Name == "PatternParent" {
 				countReplacingFields += ed.PatternParent.ReplacingOldValues(element.GetPatternParent())
+
 				continue
 			}
 		}
@@ -149,8 +151,8 @@ func (ped *PatternExtraData) ReplacingOldValues(element PatternExtraData) int {
 	newStruct := reflect.ValueOf(element)
 	typeOfNewStruct := newStruct.Type()
 
-	for i := 0; i < currentStruct.NumField(); i++ {
-		for j := 0; j < newStruct.NumField(); j++ {
+	for i := range currentStruct.NumField() {
+		for j := range newStruct.NumField() {
 			if typeOfCurrentStruct.Field(i).Name != typeOfNewStruct.Field(j).Name {
 				continue
 			}

@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 
+	"slices"
+
 	"github.com/av-belyakov/objectsthehiveformat/common"
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
@@ -53,14 +55,14 @@ func (o *Observable) SetValueSnortSid(v string) {
 	o.SnortSid = append(o.SnortSid, v)
 }
 
+// SetValueSnortSid идентификатор snort
+func (o *Observable) SetAnySnortSid(i any) {
+	o.SetValueSnortSid(fmt.Sprint(i))
+}
+
 // GetSnortSidNumber список идентификаторов snort
 func (o *Observable) GetSnortSidNumber() []int {
 	return o.SnortSidNumber
-}
-
-// SetAnySnortSid список идентификаторов snort
-func (o *Observable) SetAnySnortSid(i any) {
-	o.SetValueSnortSid(fmt.Sprint(i))
 }
 
 // SetValueSnortSidNumber список идентификаторов snort
@@ -95,10 +97,8 @@ func (o *Observable) SetValueTags(k, v string) bool {
 		o.Tags[k] = []string(nil)
 	}
 
-	for _, value := range o.Tags[k] {
-		if v == value {
-			return false
-		}
+	if slices.Contains(o.Tags[k], v) {
+		return false
 	}
 
 	o.Tags[k] = append(o.Tags[k], v)

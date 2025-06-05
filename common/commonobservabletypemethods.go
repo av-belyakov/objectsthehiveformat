@@ -30,7 +30,7 @@ func (o *CommonObservableType) SetValueIoc(v bool) {
 }
 
 // SetAnyIoc устанавливает ЛЮБОЕ значение для поля Ioc
-func (o *CommonObservableType) SetAnyIoc(i interface{}) {
+func (o *CommonObservableType) SetAnyIoc(i any) {
 	if v, ok := i.(bool); ok {
 		o.Ioc = v
 	}
@@ -46,7 +46,7 @@ func (o *CommonObservableType) SetValueSighted(v bool) {
 }
 
 // SetAnySighted устанавливает ЛЮБОЕ значение для поля Sighted
-func (o *CommonObservableType) SetAnySighted(i interface{}) {
+func (o *CommonObservableType) SetAnySighted(i any) {
 	if v, ok := i.(bool); ok {
 		o.Sighted = v
 	}
@@ -62,7 +62,7 @@ func (o *CommonObservableType) SetValueIgnoreSimilarity(v bool) {
 }
 
 // SetAnyIgnoreSimilarity устанавливает ЛЮБОЕ значение для поля IgnoreSimilarity
-func (o *CommonObservableType) SetAnyIgnoreSimilarity(i interface{}) {
+func (o *CommonObservableType) SetAnyIgnoreSimilarity(i any) {
 	if v, ok := i.(bool); ok {
 		o.IgnoreSimilarity = v
 	}
@@ -78,7 +78,7 @@ func (o *CommonObservableType) SetValueTlp(v uint64) {
 }
 
 // SetAnyTlp устанавливает ЛЮБОЕ значение для поля Tlp
-func (o *CommonObservableType) SetAnyTlp(i interface{}) {
+func (o *CommonObservableType) SetAnyTlp(i any) {
 	if v, ok := i.(float32); ok {
 		o.Tlp = uint64(v)
 
@@ -106,7 +106,7 @@ func (o *CommonObservableType) SetValueUnderliningCreatedAt(v string) {
 }
 
 // SetAnyUnderliningCreatedAt устанавливает ЛЮБОЕ значение для поля CreatedAt
-func (o *CommonObservableType) SetAnyUnderliningCreatedAt(i interface{}) {
+func (o *CommonObservableType) SetAnyUnderliningCreatedAt(i any) {
 	tmp := supportingfunctions.ConversionAnyToInt(i)
 	o.UnderliningCreatedAt = supportingfunctions.GetDateTimeFormatRFC3339(int64(tmp))
 }
@@ -121,7 +121,7 @@ func (o *CommonObservableType) SetValueUnderliningUpdatedAt(v string) {
 }
 
 // SetAnyUnderliningUpdatedAt устанавливает ЛЮБОЕ значение для поля UpdatedAt
-func (o *CommonObservableType) SetAnyUnderliningUpdatedAt(i interface{}) {
+func (o *CommonObservableType) SetAnyUnderliningUpdatedAt(i any) {
 	tmp := supportingfunctions.ConversionAnyToInt(i)
 	o.UnderliningUpdatedAt = supportingfunctions.GetDateTimeFormatRFC3339(int64(tmp))
 }
@@ -136,7 +136,7 @@ func (o *CommonObservableType) SetValueStartDate(v string) {
 }
 
 // SetAnyStartDate устанавливает ЛЮБОЕ значение для поля StartDate
-func (o *CommonObservableType) SetAnyStartDate(i interface{}) {
+func (o *CommonObservableType) SetAnyStartDate(i any) {
 	tmp := supportingfunctions.ConversionAnyToInt(i)
 	o.StartDate = supportingfunctions.GetDateTimeFormatRFC3339(int64(tmp))
 }
@@ -151,7 +151,7 @@ func (o *CommonObservableType) SetValueUnderliningCreatedBy(v string) {
 }
 
 // SetAnyUnderliningCreatedBy устанавливает ЛЮБОЕ значение для поля CreatedBy
-func (o *CommonObservableType) SetAnyUnderliningCreatedBy(i interface{}) {
+func (o *CommonObservableType) SetAnyUnderliningCreatedBy(i any) {
 	o.UnderliningCreatedBy = fmt.Sprint(i)
 }
 
@@ -165,7 +165,7 @@ func (o *CommonObservableType) SetValueUnderliningUpdatedBy(v string) {
 }
 
 // SetAnyUnderliningUpdatedBy устанавливает ЛЮБОЕ значение для поля UpdatedBy
-func (o *CommonObservableType) SetAnyUnderliningUpdatedBy(i interface{}) {
+func (o *CommonObservableType) SetAnyUnderliningUpdatedBy(i any) {
 	o.UnderliningUpdatedBy = fmt.Sprint(i)
 }
 
@@ -179,7 +179,7 @@ func (o *CommonObservableType) SetValueUnderliningId(v string) {
 }
 
 // SetAnyUnderliningId устанавливает ЛЮБОЕ значение для поля UnderliningId
-func (o *CommonObservableType) SetAnyUnderliningId(i interface{}) {
+func (o *CommonObservableType) SetAnyUnderliningId(i any) {
 	o.UnderliningId = fmt.Sprint(i)
 }
 
@@ -193,7 +193,7 @@ func (o *CommonObservableType) SetValueUnderliningType(v string) {
 }
 
 // SetAnyUnderliningType устанавливает ЛЮБОЕ значение для поля UnderliningType
-func (o *CommonObservableType) SetAnyUnderliningType(i interface{}) {
+func (o *CommonObservableType) SetAnyUnderliningType(i any) {
 	o.UnderliningType = fmt.Sprint(i)
 }
 
@@ -207,7 +207,7 @@ func (o *CommonObservableType) SetValueData(v string) {
 }
 
 // SetAnyData устанавливает ЛЮБОЕ значение для поля Data
-func (o *CommonObservableType) SetAnyData(i interface{}) {
+func (o *CommonObservableType) SetAnyData(i any) {
 	o.Data = fmt.Sprint(i)
 }
 
@@ -221,7 +221,7 @@ func (o *CommonObservableType) SetValueDataType(v string) {
 }
 
 // SetAnyDataType устанавливает ЛЮБОЕ значение для поля DataType
-func (o *CommonObservableType) SetAnyDataType(i interface{}) {
+func (o *CommonObservableType) SetAnyDataType(i any) {
 	o.DataType = fmt.Sprint(i)
 }
 
@@ -235,7 +235,7 @@ func (o *CommonObservableType) SetValueMessage(v string) {
 }
 
 // SetAnyMessage устанавливает ЛЮБОЕ значение для поля Message
-func (o *CommonObservableType) SetAnyMessage(i interface{}) {
+func (o *CommonObservableType) SetAnyMessage(i any) {
 	o.Message = fmt.Sprint(i)
 }
 

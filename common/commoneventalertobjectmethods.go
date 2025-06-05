@@ -29,7 +29,7 @@ func (o *CommonEventAlertObject) SetValueTlp(v uint64) {
 }
 
 // SetAnyTlp устанавливает ЛЮБОЕ значение для поля Tlp
-func (o *CommonEventAlertObject) SetAnyTlp(i interface{}) {
+func (o *CommonEventAlertObject) SetAnyTlp(i any) {
 	if v, ok := i.(float32); ok {
 		o.Tlp = uint64(v)
 
@@ -221,7 +221,7 @@ func (o *CommonEventAlertObject) SetValueType(v string) {
 }
 
 // SetAnyType значение поля Type
-func (o *CommonEventAlertObject) SetAnyType(i interface{}) {
+func (o *CommonEventAlertObject) SetAnyType(i any) {
 	o.Type = fmt.Sprint(i)
 }
 
@@ -235,7 +235,7 @@ func (o *CommonEventAlertObject) SetValueObjectType(v string) {
 }
 
 // SetAnyObjectType значение поля ObjectType
-func (o *CommonEventAlertObject) SetAnyObjectType(i interface{}) {
+func (o *CommonEventAlertObject) SetAnyObjectType(i any) {
 	o.ObjectType = fmt.Sprint(i)
 }
 
@@ -249,7 +249,7 @@ func (o *CommonEventAlertObject) SetValueSource(v string) {
 }
 
 // SetAnySource значение поля Source
-func (o *CommonEventAlertObject) SetAnySource(i interface{}) {
+func (o *CommonEventAlertObject) SetAnySource(i any) {
 	o.Source = fmt.Sprint(i)
 }
 
@@ -263,7 +263,7 @@ func (o *CommonEventAlertObject) SetValueSourceRef(v string) {
 }
 
 // SetAnySourceRef значение поля SourceRef
-func (o *CommonEventAlertObject) SetAnySourceRef(i interface{}) {
+func (o *CommonEventAlertObject) SetAnySourceRef(i any) {
 	o.SourceRef = fmt.Sprint(i)
 }
 
@@ -277,7 +277,7 @@ func (o *CommonEventAlertObject) SetValueCase(v string) {
 }
 
 // SetAnyCase значение поля Case
-func (o *CommonEventAlertObject) SetAnyCase(i interface{}) {
+func (o *CommonEventAlertObject) SetAnyCase(i any) {
 	o.Case = fmt.Sprint(i)
 }
 
@@ -291,7 +291,7 @@ func (o *CommonEventAlertObject) SetValueCaseTemplate(v string) {
 }
 
 // SetAnyCaseTemplate значение поля CaseTemplate
-func (o *CommonEventAlertObject) SetAnyCaseTemplate(i interface{}) {
+func (o *CommonEventAlertObject) SetAnyCaseTemplate(i any) {
 	o.CaseTemplate = fmt.Sprint(i)
 }
 

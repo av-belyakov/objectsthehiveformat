@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strings"
 
+	"slices"
+
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
 
@@ -74,14 +76,16 @@ func (e *EventAlertDetails) GetTags() map[string][]string {
 
 // SetValueTags добаляет значение в Tags по ключу
 func (e *EventAlertDetails) SetValueTags(k, v string) bool {
+	if e.Tags == nil {
+		e.Tags = make(map[string][]string)
+	}
+
 	if _, ok := e.Tags[k]; !ok {
 		e.Tags[k] = []string(nil)
 	}
 
-	for _, value := range e.Tags[k] {
-		if v == value {
-			return false
-		}
+	if slices.Contains(e.Tags[k], v) {
+		return false
 	}
 
 	e.Tags[k] = append(e.Tags[k], v)
@@ -90,7 +94,7 @@ func (e *EventAlertDetails) SetValueTags(k, v string) bool {
 }
 
 // SetAnyTags значение поля Tags
-func (e *EventAlertDetails) SetAnyTags(k string, i interface{}) bool {
+func (e *EventAlertDetails) SetAnyTags(k string, i any) bool {
 	return e.SetValueTags(k, fmt.Sprint(i))
 }
 
@@ -105,12 +109,16 @@ func (a *EventAlertDetails) GetTagsAll() []string {
 
 // SetValueTagsAll значение в список поля TagsAll
 func (a *EventAlertDetails) SetValueTagsAll(v string) {
+	if a.TagsAll == nil {
+		a.TagsAll = []string(nil)
+	}
+
 	a.TagsAll = append(a.TagsAll, v)
 }
 
 // SetAnyTagsAll значение в список поля TagsAll
 func (a *EventAlertDetails) SetAnyTagsAll(i any) {
-	a.TagsAll = append(a.TagsAll, fmt.Sprint(i))
+	a.SetValueTagsAll(fmt.Sprint(i))
 }
 
 // ToStringBeautiful форматированный вывод

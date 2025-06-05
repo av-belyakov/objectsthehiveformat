@@ -37,6 +37,10 @@ func (o *Observables) SetValueObservables(v map[string][]Observable) {
 
 // AddValueObservable значение для поля Observable
 func (o *Observables) AddValueObservable(k string, v Observable) {
+	if o.Observables == nil {
+		o.Observables = make(map[string][]Observable)
+	}
+
 	if _, ok := o.Observables[k]; !ok {
 		o.Observables[k] = []Observable(nil)
 	}

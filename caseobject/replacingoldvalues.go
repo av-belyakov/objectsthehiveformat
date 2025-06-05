@@ -21,8 +21,8 @@ func (o *EventCaseObject) ReplacingOldValues(element EventCaseObject) int {
 	newStruct := reflect.ValueOf(element)
 	typeOfNewStruct := newStruct.Type()
 
-	for i := 0; i < currentStruct.NumField(); i++ {
-		for j := 0; j < newStruct.NumField(); j++ {
+	for i := range currentStruct.NumField() {
+		for j := range newStruct.NumField() {
 			if typeOfCurrentStruct.Field(i).Name != typeOfNewStruct.Field(j).Name {
 				continue
 			}

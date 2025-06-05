@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strings"
 
+	"slices"
+
 	"github.com/av-belyakov/objectsthehiveformat/alertartifacts"
 	"github.com/av-belyakov/objectsthehiveformat/common"
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
@@ -79,15 +81,17 @@ func (a *TypeAlert) GetTags() map[string][]string {
 
 // SetValueTags добаляет значение в Tags по ключу
 func (a *TypeAlert) SetValueTags(k, v string) bool {
+	if a.Tags == nil {
+		a.Tags = make(map[string][]string)
+	}
+
 	if _, ok := a.Tags[k]; !ok {
 		a.Tags[k] = []string(nil)
 	}
 
 	v = supportingfunctions.TrimIsNotLetter(v)
-	for _, value := range a.Tags[k] {
-		if v == value {
-			return false
-		}
+	if slices.Contains(a.Tags[k], v) {
+		return false
 	}
 
 	a.Tags[k] = append(a.Tags[k], v)
@@ -106,12 +110,16 @@ func (a *TypeAlert) GetTagsAll() []string {
 
 // SetValueTagsAll добавляет значение в список поля TagsAll
 func (a *TypeAlert) SetValueTagsAll(v string) {
+	if a.TagsAll == nil {
+		a.TagsAll = []string(nil)
+	}
+
 	a.TagsAll = append(a.TagsAll, v)
 }
 
 // SetAnyTagsAll добавляет значение в список поля TagsAll
 func (a *TypeAlert) SetAnyTagsAll(i any) {
-	a.TagsAll = append(a.TagsAll, fmt.Sprint(i))
+	a.SetValueTagsAll(fmt.Sprint(i))
 }
 
 func (a *TypeAlert) GetCustomFields() common.CustomFields {
@@ -147,6 +155,10 @@ func (a *TypeAlert) SetValueArtifacts(v map[string][]alertartifacts.Artifacts) {
 
 // AddValueArtifact добавляет значение поля Artifacts по ключу
 func (a *TypeAlert) AddValueArtifact(k string, v alertartifacts.Artifacts) {
+	if a.Artifacts == nil {
+		a.Artifacts = make(map[string][]alertartifacts.Artifacts)
+	}
+
 	if _, ok := a.Artifacts[k]; !ok {
 		a.Artifacts[k] = []alertartifacts.Artifacts(nil)
 	}

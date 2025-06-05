@@ -104,7 +104,6 @@ func (fields *CustomFields) UnmarshalBSON(data []byte) error {
 		return err
 	}
 
-	//newResult := make(map[string]CustomerFields, len(tmp.CustomFields))
 	newResult := make(CustomFields, len(tmp))
 	for k, v := range tmp {
 		name, ok := list[k]
@@ -147,7 +146,7 @@ func (cf *CustomFieldStringType) Get() (string, int, string, string) {
 }
 
 // Set устанавливает значения CustomFieldStringType
-func (cf *CustomFieldStringType) Set(order, str interface{}) {
+func (cf *CustomFieldStringType) Set(order, str any) {
 	cf.Order = supportingfunctions.ConversionAnyToInt(order)
 	cf.String = fmt.Sprint(str)
 }
@@ -159,7 +158,7 @@ func (cf *CustomFieldDateType) Get() (string, int, string, string) {
 }
 
 // Set устанавливает значения CustomFieldDateType
-func (cf *CustomFieldDateType) Set(order, date interface{}) {
+func (cf *CustomFieldDateType) Set(order, date any) {
 	cf.Order = supportingfunctions.ConversionAnyToInt(order)
 
 	if str, ok := date.(string); ok {
@@ -179,7 +178,7 @@ func (cf *CustomFieldIntegerType) Get() (string, int, string, string) {
 }
 
 // Set устанавливает значения CustomFieldIntegerType
-func (cf *CustomFieldIntegerType) Set(order, integer interface{}) {
+func (cf *CustomFieldIntegerType) Set(order, integer any) {
 	cf.Order = supportingfunctions.ConversionAnyToInt(order)
 
 	if i, ok := integer.(int); ok {
@@ -194,7 +193,7 @@ func (cf *CustomFieldBoolenType) Get() (string, int, string, string) {
 }
 
 // Set устанавливает значения CustomFieldBoolenType
-func (cf *CustomFieldBoolenType) Set(order, boolen interface{}) {
+func (cf *CustomFieldBoolenType) Set(order, boolen any) {
 	cf.Order = supportingfunctions.ConversionAnyToInt(order)
 
 	if i, ok := boolen.(bool); ok {
@@ -304,12 +303,16 @@ func (a *AttachmentData) GetHashes() []string {
 
 // SetValueHashes хеши
 func (a *AttachmentData) SetValueHashes(v string) {
+	if a.Hashes == nil {
+		a.Hashes = []string(nil)
+	}
+
 	a.Hashes = append(a.Hashes, v)
 }
 
 // SetAnyHashes хеши
 func (a *AttachmentData) SetAnyHashes(i any) {
-	a.Hashes = append(a.Hashes, fmt.Sprint(i))
+	a.SetValueHashes(fmt.Sprint(i))
 }
 
 // ToStringBeautiful форматированный вывод

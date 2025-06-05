@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strings"
 
+	"slices"
+
 	"github.com/av-belyakov/objectsthehiveformat/common"
 	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
@@ -28,15 +30,17 @@ func (e *EventAlertObject) GetTags() map[string][]string {
 
 // SetValueTags значение в Tags по ключу
 func (e *EventAlertObject) SetValueTags(k, v string) bool {
+	if e.Tags == nil {
+		e.Tags = make(map[string][]string)
+	}
+
 	if _, ok := e.Tags[k]; !ok {
 		e.Tags[k] = []string(nil)
 	}
 
 	v = supportingfunctions.TrimIsNotLetter(v)
-	for _, value := range e.Tags[k] {
-		if v == value {
-			return false
-		}
+	if slices.Contains(e.Tags[k], v) {
+		return false
 	}
 
 	e.Tags[k] = append(e.Tags[k], v)
@@ -45,7 +49,7 @@ func (e *EventAlertObject) SetValueTags(k, v string) bool {
 }
 
 // SetAnyTags значение для поля Tags
-func (e *EventAlertObject) SetAnyTags(k string, i interface{}) bool {
+func (e *EventAlertObject) SetAnyTags(k string, i any) bool {
 	return e.SetValueTags(k, fmt.Sprint(i))
 }
 
@@ -55,12 +59,16 @@ func (a *EventAlertObject) GetTagsAll() []string {
 
 // SetValueTagsAll значение в список поля TagsAll
 func (a *EventAlertObject) SetValueTagsAll(v string) {
+	if a.TagsAll == nil {
+		a.TagsAll = []string(nil)
+	}
+
 	a.TagsAll = append(a.TagsAll, v)
 }
 
 // SetAnyTagsAll значение в список поля TagsAll
-func (a *EventAlertObject) SetAnyTagsAll(i interface{}) {
-	a.TagsAll = append(a.TagsAll, fmt.Sprint(i))
+func (a *EventAlertObject) SetAnyTagsAll(i any) {
+	a.SetValueTagsAll(fmt.Sprint(i))
 }
 
 func (e *EventAlertObject) GetCustomFields() common.CustomFields {

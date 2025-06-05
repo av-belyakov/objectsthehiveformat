@@ -29,7 +29,7 @@ func (a *CommonArtifactType) SetValueIoc(v bool) {
 }
 
 // SetAnyIoc устанавливает ЛЮБОЕ значение для поля Ioc
-func (a *CommonArtifactType) SetAnyIoc(i interface{}) {
+func (a *CommonArtifactType) SetAnyIoc(i any) {
 	if v, ok := i.(bool); ok {
 		a.Ioc = v
 	}
@@ -45,7 +45,7 @@ func (a *CommonArtifactType) SetValueTlp(v uint64) {
 }
 
 // SetAnyTlp устанавливает ЛЮБОЕ значение для поля Tlp
-func (a *CommonArtifactType) SetAnyTlp(i interface{}) {
+func (a *CommonArtifactType) SetAnyTlp(i any) {
 	if v, ok := i.(float32); ok {
 		a.Tlp = uint64(v)
 
@@ -73,7 +73,7 @@ func (a *CommonArtifactType) SetValueUnderliningId(v string) {
 }
 
 // SetAnyUnderliningId устанавливает ЛЮБОЕ значение для поля UnderliningId
-func (a *CommonArtifactType) SetAnyUnderliningId(i interface{}) {
+func (a *CommonArtifactType) SetAnyUnderliningId(i any) {
 	a.UnderliningId = fmt.Sprint(i)
 }
 
@@ -87,7 +87,7 @@ func (a *CommonArtifactType) SetValueId(v string) {
 }
 
 // SetAnyId устанавливает ЛЮБОЕ значение для поля Id
-func (a *CommonArtifactType) SetAnyId(i interface{}) {
+func (a *CommonArtifactType) SetAnyId(i any) {
 	a.Id = fmt.Sprint(i)
 }
 
@@ -101,7 +101,7 @@ func (a *CommonArtifactType) SetValueUnderliningType(v string) {
 }
 
 // SetAnyUnderliningType устанавливает ЛЮБОЕ значение для поля UnderliningType
-func (a *CommonArtifactType) SetAnyUnderliningType(i interface{}) {
+func (a *CommonArtifactType) SetAnyUnderliningType(i any) {
 	a.UnderliningType = fmt.Sprint(i)
 }
 
@@ -115,7 +115,7 @@ func (a *CommonArtifactType) SetValueCreatedAt(v string) {
 }
 
 // SetAnyCreatedAt устанавливает ЛЮБОЕ значение для поля CreatedAt
-func (a *CommonArtifactType) SetAnyCreatedAt(i interface{}) {
+func (a *CommonArtifactType) SetAnyCreatedAt(i any) {
 	tmp := supportingfunctions.ConversionAnyToInt(i)
 	a.CreatedAt = supportingfunctions.GetDateTimeFormatRFC3339(int64(tmp))
 }
@@ -130,7 +130,7 @@ func (a *CommonArtifactType) SetValueStartDate(v string) {
 }
 
 // SetAnyStartDate устанавливает ЛЮБОЕ значение для поля StartDate
-func (a *CommonArtifactType) SetAnyStartDate(i interface{}) {
+func (a *CommonArtifactType) SetAnyStartDate(i any) {
 	tmp := supportingfunctions.ConversionAnyToInt(i)
 	a.StartDate = supportingfunctions.GetDateTimeFormatRFC3339(int64(tmp))
 }
@@ -145,7 +145,7 @@ func (a *CommonArtifactType) SetValueCreatedBy(v string) {
 }
 
 // SetAnyCreatedBy устанавливает ЛЮБОЕ значение для поля CreatedBy
-func (a *CommonArtifactType) SetAnyCreatedBy(i interface{}) {
+func (a *CommonArtifactType) SetAnyCreatedBy(i any) {
 	a.CreatedBy = fmt.Sprint(i)
 }
 
@@ -159,7 +159,7 @@ func (a *CommonArtifactType) SetValueData(v string) {
 }
 
 // SetAnyData устанавливает ЛЮБОЕ значение для поля Data
-func (a *CommonArtifactType) SetAnyData(i interface{}) {
+func (a *CommonArtifactType) SetAnyData(i any) {
 	a.Data = fmt.Sprint(i)
 }
 
@@ -173,7 +173,7 @@ func (a *CommonArtifactType) SetValueDataType(v string) {
 }
 
 // SetAnyDataType устанавливает ЛЮБОЕ значение для поля DataType
-func (a *CommonArtifactType) SetAnyDataType(i interface{}) {
+func (a *CommonArtifactType) SetAnyDataType(i any) {
 	a.DataType = fmt.Sprint(i)
 }
 
@@ -187,7 +187,7 @@ func (a *CommonArtifactType) SetValueMessage(v string) {
 }
 
 // SetAnyMessage устанавливает ЛЮБОЕ значение для поля Message
-func (a *CommonArtifactType) SetAnyMessage(i interface{}) {
+func (a *CommonArtifactType) SetAnyMessage(i any) {
 	a.Message = fmt.Sprint(i)
 }
 

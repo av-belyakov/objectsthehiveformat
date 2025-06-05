@@ -324,7 +324,7 @@ func (e *CommonEventCaseObject) SetValueDescription(v string) {
 }
 
 // SetAnyDescription описание
-func (e *CommonEventCaseObject) SetAnyDescription(i interface{}) {
+func (e *CommonEventCaseObject) SetAnyDescription(i any) {
 	str := fmt.Sprint(i)
 	str = strings.ReplaceAll(str, "\t", "")
 	str = strings.ReplaceAll(str, "\n", "")

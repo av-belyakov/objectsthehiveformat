@@ -69,7 +69,7 @@ func (ped *PatternExtraData) SetValueRemoteSupport(v bool) {
 }
 
 // SetAnyRemoteSupport устанавливает ЛЮБОЕ значение для поля RemoteSupport
-func (ped *PatternExtraData) SetAnyRemoteSupport(i interface{}) {
+func (ped *PatternExtraData) SetAnyRemoteSupport(i any) {
 	if v, ok := i.(bool); ok {
 		ped.RemoteSupport = v
 	}
@@ -85,7 +85,7 @@ func (ped *PatternExtraData) SetValueRevoked(v bool) {
 }
 
 // SetAnyRemoteSupport устанавливает ЛЮБОЕ значение для поля Revoked
-func (ped *PatternExtraData) SetAnyRevoked(i interface{}) {
+func (ped *PatternExtraData) SetAnyRevoked(i any) {
 	if v, ok := i.(bool); ok {
 		ped.Revoked = v
 	}
@@ -101,7 +101,7 @@ func (ped *PatternExtraData) SetValueUnderliningCreatedAt(v string) {
 }
 
 // SetAnyUnderliningCreatedAt устанавливает ЛЮБОЕ значение для поля UnderliningCreatedAt
-func (ped *PatternExtraData) SetAnyUnderliningCreatedAt(i interface{}) {
+func (ped *PatternExtraData) SetAnyUnderliningCreatedAt(i any) {
 	tmp := supportingfunctions.ConversionAnyToInt(i)
 	ped.UnderliningCreatedAt = supportingfunctions.GetDateTimeFormatRFC3339(int64(tmp))
 }
@@ -116,7 +116,7 @@ func (ped *PatternExtraData) SetValueUnderliningCreatedBy(v string) {
 }
 
 // SetAnyUnderliningCreatedBy устанавливает ЛЮБОЕ значение для поля UnderliningCreatedBy
-func (ped *PatternExtraData) SetAnyUnderliningCreatedBy(i interface{}) {
+func (ped *PatternExtraData) SetAnyUnderliningCreatedBy(i any) {
 	ped.UnderliningCreatedBy = fmt.Sprint(i)
 }
 
@@ -130,7 +130,7 @@ func (ped *PatternExtraData) SetValueUnderliningId(v string) {
 }
 
 // SetAnyUnderliningId устанавливает ЛЮБОЕ значение для поля UnderliningId
-func (ped *PatternExtraData) SetAnyUnderliningId(i interface{}) {
+func (ped *PatternExtraData) SetAnyUnderliningId(i any) {
 	ped.UnderliningId = fmt.Sprint(i)
 }
 
@@ -144,7 +144,7 @@ func (ped *PatternExtraData) SetValueUnderliningType(v string) {
 }
 
 // SetAnyUnderliningType устанавливает ЛЮБОЕ значение для поля UnderliningType
-func (ped *PatternExtraData) SetAnyUnderliningType(i interface{}) {
+func (ped *PatternExtraData) SetAnyUnderliningType(i any) {
 	ped.UnderliningType = fmt.Sprint(i)
 }
 
@@ -161,7 +161,7 @@ func (ped *PatternExtraData) SetValueDetection(v string) {
 }
 
 // SetAnyDetection устанавливает ЛЮБОЕ значение для поля Detection
-func (ped *PatternExtraData) SetAnyDetection(i interface{}) {
+func (ped *PatternExtraData) SetAnyDetection(i any) {
 	str := fmt.Sprint(i)
 	str = strings.ReplaceAll(str, "\t", "")
 	str = strings.ReplaceAll(str, "\n", "")
@@ -182,7 +182,7 @@ func (ped *PatternExtraData) SetValueDescription(v string) {
 }
 
 // SetAnyDescription устанавливает ЛЮБОЕ значение для поля Description
-func (ped *PatternExtraData) SetAnyDescription(i interface{}) {
+func (ped *PatternExtraData) SetAnyDescription(i any) {
 	str := fmt.Sprint(i)
 	str = strings.ReplaceAll(str, "\t", "")
 	str = strings.ReplaceAll(str, "\n", "")
@@ -200,7 +200,7 @@ func (ped *PatternExtraData) SetValueName(v string) {
 }
 
 // SetAnyName устанавливает ЛЮБОЕ значение для поля Name
-func (ped *PatternExtraData) SetAnyName(i interface{}) {
+func (ped *PatternExtraData) SetAnyName(i any) {
 	ped.Name = fmt.Sprint(i)
 }
 
@@ -214,7 +214,7 @@ func (ped *PatternExtraData) SetValuePatternId(v string) {
 }
 
 // SetAnyPatternId устанавливает ЛЮБОЕ значение для поля PatternId
-func (ped *PatternExtraData) SetAnyPatternId(i interface{}) {
+func (ped *PatternExtraData) SetAnyPatternId(i any) {
 	ped.PatternId = fmt.Sprint(i)
 }
 
@@ -228,7 +228,7 @@ func (ped *PatternExtraData) SetValuePatternType(v string) {
 }
 
 // SetAnyPatternType устанавливает ЛЮБОЕ значение для поля PatternType
-func (ped *PatternExtraData) SetAnyPatternType(i interface{}) {
+func (ped *PatternExtraData) SetAnyPatternType(i any) {
 	ped.PatternType = fmt.Sprint(i)
 }
 
@@ -242,7 +242,7 @@ func (ped *PatternExtraData) SetValueURL(v string) {
 }
 
 // SetAnyURL устанавливает ЛЮБОЕ значение для поля URL
-func (ped *PatternExtraData) SetAnyURL(i interface{}) {
+func (ped *PatternExtraData) SetAnyURL(i any) {
 	ped.URL = fmt.Sprint(i)
 }
 
@@ -256,7 +256,7 @@ func (ped *PatternExtraData) SetValueVersion(v string) {
 }
 
 // SetAnyVersion устанавливает ЛЮБОЕ значение для поля Version
-func (ped *PatternExtraData) SetAnyVersion(i interface{}) {
+func (ped *PatternExtraData) SetAnyVersion(i any) {
 	ped.Version = fmt.Sprint(i)
 }
 
@@ -266,12 +266,16 @@ func (ped *PatternExtraData) GetPlatforms() []string {
 
 // SetValuePlatforms устанавливает STRING значение для поля Platforms
 func (ped *PatternExtraData) SetValuePlatforms(v string) {
+	if ped.Platforms == nil {
+		ped.Platforms = []string(nil)
+	}
+
 	ped.Platforms = append(ped.Platforms, v)
 }
 
 // SetAnyPlatforms устанавливает ЛЮБОЕ значение для поля Platforms
-func (ped *PatternExtraData) SetAnyPlatforms(i interface{}) {
-	ped.Platforms = append(ped.Platforms, fmt.Sprint(i))
+func (ped *PatternExtraData) SetAnyPlatforms(i any) {
+	ped.SetValuePlatforms(fmt.Sprint(i))
 }
 
 func (ped *PatternExtraData) GetPermissionsRequired() []string {
@@ -280,12 +284,16 @@ func (ped *PatternExtraData) GetPermissionsRequired() []string {
 
 // SetValuePermissionsRequired устанавливает STRING значение для поля PermissionsRequired
 func (ped *PatternExtraData) SetValuePermissionsRequired(v string) {
+	if ped.PermissionsRequired == nil {
+		ped.PermissionsRequired = []string(nil)
+	}
+
 	ped.PermissionsRequired = append(ped.PermissionsRequired, v)
 }
 
 // SetAnyPermissionsRequired устанавливает ЛЮБОЕ значение для поля PermissionsRequired
-func (ped *PatternExtraData) SetAnyPermissionsRequired(i interface{}) {
-	ped.PermissionsRequired = append(ped.PermissionsRequired, fmt.Sprint(i))
+func (ped *PatternExtraData) SetAnyPermissionsRequired(i any) {
+	ped.SetValuePermissionsRequired(fmt.Sprint(i))
 }
 
 func (ped *PatternExtraData) GetDataSources() []string {
@@ -294,12 +302,16 @@ func (ped *PatternExtraData) GetDataSources() []string {
 
 // SetValueDataSources устанавливает STRING значение для поля DataSources
 func (ped *PatternExtraData) SetValueDataSources(v string) {
+	if ped.DataSources == nil {
+		ped.DataSources = []string(nil)
+	}
+
 	ped.DataSources = append(ped.DataSources, v)
 }
 
 // SetAnyDataSources устанавливает ЛЮБОЕ значение для поля DataSources
-func (ped *PatternExtraData) SetAnyDataSources(i interface{}) {
-	ped.DataSources = append(ped.DataSources, fmt.Sprint(i))
+func (ped *PatternExtraData) SetAnyDataSources(i any) {
+	ped.SetValueDataSources(fmt.Sprint(i))
 }
 
 func (ped *PatternExtraData) GetTactics() []string {
@@ -308,12 +320,16 @@ func (ped *PatternExtraData) GetTactics() []string {
 
 // SetValueTactics устанавливает STRING значение для поля Tactics
 func (ped *PatternExtraData) SetValueTactics(v string) {
+	if ped.Tactics == nil {
+		ped.Tactics = []string(nil)
+	}
+
 	ped.Tactics = append(ped.Tactics, v)
 }
 
 // SetAnyTactics устанавливает ЛЮБОЕ значение для поля Tactics
-func (ped *PatternExtraData) SetAnyTactics(i interface{}) {
-	ped.Tactics = append(ped.Tactics, fmt.Sprint(i))
+func (ped *PatternExtraData) SetAnyTactics(i any) {
+	ped.SetValueTactics(fmt.Sprint(i))
 }
 
 func (ped PatternExtraData) ToStringBeautiful(num int) string {
