@@ -1,4 +1,4 @@
-package interfaces
+package common
 
 type CustomerFields interface {
 	//принимает значения где первое значение метода это первое значение в структуре данных,
