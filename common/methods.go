@@ -5,9 +5,35 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 	"go.mongodb.org/mongo-driver/bson"
+
+	"maps"
+
+	"github.com/av-belyakov/objectsthehiveformat/supportingfunctions"
 )
+
+var list = map[string]string{
+	"attack-type":         "string",
+	"class-attack":        "string",
+	"event-source":        "string",
+	"external-letter":     "string",
+	"geoip":               "string",
+	"ncircc-class-attack": "string",
+	"ncircc-bulletin-id":  "string",
+	"inbox1":              "string",
+	"inner-letter":        "string",
+	"ir-name":             "string",
+	"id-soa":              "string",
+	"notification":        "string",
+	"sphere":              "string",
+	"state":               "string",
+	"report":              "string",
+	"first-time":          "date",
+	"last-time":           "date",
+	"b2mid":               "integer",
+	"is-incident":         "boolen",
+	"work-admin":          "boolen",
+}
 
 // ************* CustomFields **************
 
@@ -22,36 +48,11 @@ func (fields *CustomFields) Set(v CustomFields) {
 		*fields = make(CustomFields)
 	}
 
-	for key, value := range v {
-		(*fields)[key] = value
-	}
+	maps.Copy((*fields), v)
 }
 
 func (fields *CustomFields) UnmarshalJSON(data []byte) error {
 	type tmpCustomFieldType map[string]*json.RawMessage
-
-	list := map[string]string{
-		"attack-type":         "string",
-		"class-attack":        "string",
-		"event-source":        "string",
-		"external-letter":     "string",
-		"geoip":               "string",
-		"ncircc-class-attack": "string",
-		"ncircc-bulletin-id":  "string",
-		"inbox1":              "string",
-		"inner-letter":        "string",
-		"ir-name":             "string",
-		"id-soa":              "string",
-		"notification":        "string",
-		"sphere":              "string",
-		"state":               "string",
-		"report":              "string",
-		"first-time":          "date",
-		"last-time":           "date",
-		"b2mid":               "integer",
-		"is-incident":         "boolen",
-		"work-admin":          "boolen",
-	}
 
 	tmp := tmpCustomFieldType{}
 	if err := json.Unmarshal(data, &tmp); err != nil {
@@ -95,29 +96,6 @@ func (fields *CustomFields) UnmarshalJSON(data []byte) error {
 
 func (fields *CustomFields) UnmarshalBSON(data []byte) error {
 	type tmpCustomFieldType map[string]*bson.Raw
-
-	list := map[string]string{
-		"attack-type":         "string",
-		"class-attack":        "string",
-		"event-source":        "string",
-		"external-letter":     "string",
-		"geoip":               "string",
-		"ncircc-class-attack": "string",
-		"ncircc-bulletin-id":  "string",
-		"inbox1":              "string",
-		"inner-letter":        "string",
-		"ir-name":             "string",
-		"id-soa":              "string",
-		"notification":        "string",
-		"sphere":              "string",
-		"state":               "string",
-		"report":              "string",
-		"first-time":          "date",
-		"last-time":           "date",
-		"b2mid":               "integer",
-		"is-incident":         "boolen",
-		"work-admin":          "boolen",
-	}
 
 	tmp := tmpCustomFieldType{}
 	if err := bson.Unmarshal(data, &tmp); err != nil {
