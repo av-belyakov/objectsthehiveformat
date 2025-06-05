@@ -51,6 +51,7 @@ func (fields *CustomFields) Set(v CustomFields) {
 	maps.Copy((*fields), v)
 }
 
+// UnmarshalJSON настраиваемый автоматический анмаршалинг
 func (fields *CustomFields) UnmarshalJSON(data []byte) error {
 	type tmpCustomFieldType map[string]*json.RawMessage
 
@@ -94,6 +95,7 @@ func (fields *CustomFields) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// UnmarshalBSON настраиваемый автоматический анмаршалинг
 func (fields *CustomFields) UnmarshalBSON(data []byte) error {
 	type tmpCustomFieldType map[string]*bson.Raw
 
