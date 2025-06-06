@@ -27,6 +27,10 @@ func (o *Observables) GetKeyObservables(k string) ([]Observable, bool) {
 }
 
 func (o *Observables) SetKeyObservables(k string, observables []Observable) {
+	if o.Observables == nil {
+		o.Observables = make(map[string][]Observable)
+	}
+
 	o.Observables[k] = observables
 }
 

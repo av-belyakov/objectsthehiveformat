@@ -50,12 +50,16 @@ func (a *Artifacts) GetSnortSid() []string {
 
 // SetValueSnortSid добавляет значение в список поля SnortSid
 func (a *Artifacts) SetValueSnortSid(v string) {
+	if a.SnortSid == nil {
+		a.SnortSid = []string(nil)
+	}
+
 	a.SnortSid = append(a.SnortSid, v)
 }
 
 // SetAnySnortSid добавляет значение в список поля SnortSid
 func (a *Artifacts) SetAnySnortSid(i any) {
-	a.SnortSid = append(a.SnortSid, fmt.Sprint(i))
+	a.SetValueSnortSid(fmt.Sprint(i))
 }
 
 func (a *Artifacts) GetSnortSidNumber() []int {
@@ -64,6 +68,10 @@ func (a *Artifacts) GetSnortSidNumber() []int {
 
 // SetValueSnortSidNumber добавляет значение в список поля SnortSidNumber
 func (a *Artifacts) SetValueSnortSidNumber(v int) {
+	if a.SnortSidNumber == nil {
+		a.SnortSidNumber = []int(nil)
+	}
+
 	a.SnortSidNumber = append(a.SnortSidNumber, v)
 }
 

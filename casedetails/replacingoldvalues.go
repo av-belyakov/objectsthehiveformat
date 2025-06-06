@@ -1,6 +1,7 @@
 package casedetails
 
 import (
+	"maps"
 	"reflect"
 
 	"github.com/av-belyakov/objectsthehiveformat/common"
@@ -23,8 +24,8 @@ func (d *EventCaseDetails) ReplacingOldValues(element EventCaseDetails) int {
 	newStruct := reflect.ValueOf(element)
 	typeOfNewStruct := newStruct.Type()
 
-	for i := 0; i < currentStruct.NumField(); i++ {
-		for j := 0; j < newStruct.NumField(); j++ {
+	for i := range currentStruct.NumField() {
+		for j := range newStruct.NumField() {
 			if typeOfCurrentStruct.Field(i).Name != typeOfNewStruct.Field(j).Name {
 				continue
 			}
@@ -38,10 +39,11 @@ func (d *EventCaseDetails) ReplacingOldValues(element EventCaseDetails) int {
 					continue
 				}
 
-				for k, v := range newCustomFields {
-					currentCustomFields[k] = v
+				if currentCustomFields == nil {
+					currentCustomFields = make(common.CustomFields)
 				}
 
+				maps.Copy(currentCustomFields, newCustomFields)
 				d.SetValueCustomFields(currentCustomFields)
 				countReplacingFields++
 

@@ -113,6 +113,7 @@ func (o *Observable) ReplacingOldValues(element Observable) int {
 			//********************************
 			if typeOfCurrentStruct.Field(i).Name == "Attachment" {
 				countReplacingFields += o.Attachment.ReplacingOldValues(*element.GetAttachment())
+
 				continue
 			}
 

@@ -145,6 +145,10 @@ func (a *TypeAlert) GetKeyArtifacts(k string) ([]alertartifacts.Artifacts, bool)
 
 // SetKeyArtifacts добавляет значение в виде среза для поля Artifacts по ключу
 func (a *TypeAlert) SetKeyArtifacts(k string, artifacts []alertartifacts.Artifacts) {
+	if a.Artifacts == nil {
+		a.Artifacts = make(map[string][]alertartifacts.Artifacts)
+	}
+
 	a.Artifacts[k] = artifacts
 }
 

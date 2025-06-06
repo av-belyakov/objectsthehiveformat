@@ -23,6 +23,10 @@ func (ttps *Ttps) GetTtps() []Ttp {
 }
 
 func (ttps *Ttps) Set(v Ttp) {
+	if ttps.Ttp == nil {
+		ttps.Ttp = []Ttp(nil)
+	}
+
 	ttps.Ttp = append(ttps.Ttp, v)
 }
 

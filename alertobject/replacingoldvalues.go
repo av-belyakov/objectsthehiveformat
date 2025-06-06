@@ -1,6 +1,7 @@
 package alertobject
 
 import (
+	"maps"
 	"reflect"
 
 	"github.com/av-belyakov/objectsthehiveformat/common"
@@ -72,10 +73,11 @@ func (o *EventAlertObject) ReplacingOldValues(element EventAlertObject) int {
 					continue
 				}
 
-				for k, v := range newCustomFields {
-					currentCustomFields[k] = v
+				if currentCustomFields == nil {
+					currentCustomFields = make(common.CustomFields)
 				}
 
+				maps.Copy(currentCustomFields, newCustomFields)
 				o.SetValueCustomFields(currentCustomFields)
 				countReplacingFields++
 
